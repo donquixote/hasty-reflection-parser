@@ -117,9 +117,12 @@ class ClassIndexTest extends \PHPUnit_Framework_TestCase {
     $composerClassLoader = include dirname(dirname(__DIR__)) . '/vendor/autoload.php';
     $list = array();
     foreach (array(
-      ClassIndex_Ast::createWithClassLoader(new ClassLoader_Composer($composerClassLoader)),
-      ClassIndex_Ast::createWithClassLoader(new ClassLoader_Native()),
-      ClassIndex_Ast::createSemiNative(),
+      ClassIndex_Ast::createWithClassLoader(new ClassLoader_Composer($composerClassLoader), FALSE),
+      ClassIndex_Ast::createWithClassLoader(new ClassLoader_Native(), FALSE),
+      ClassIndex_Ast::createSemiNative(FALSE),
+      ClassIndex_Ast::createWithClassLoader(new ClassLoader_Composer($composerClassLoader), TRUE),
+      ClassIndex_Ast::createWithClassLoader(new ClassLoader_Native(), TRUE),
+      ClassIndex_Ast::createSemiNative(TRUE),
       new ClassIndex_Native(),
     ) as $classIndex) {
       foreach ($classes as $class) {
