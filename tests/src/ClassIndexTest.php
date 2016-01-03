@@ -32,6 +32,9 @@ class ClassIndexTest extends \PHPUnit_Framework_TestCase {
     $classReflection = $classIndex->classGetReflection($class);
     $reflectionClass = new \ReflectionClass($class);
 
+    // Test identity.
+    $this->assertTrue($classReflection === $classIndex->classGetReflection($class));
+
     // Test name.
     $this->assertEquals($reflectionClass->getName(), $classReflection->getName());
 
