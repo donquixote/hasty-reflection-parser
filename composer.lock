@@ -1,0 +1,151 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "5c966431d681fe58a64257fee744f9e3",
+    "content-hash": "bf642bc508ff50c58decede327e682cb",
+    "packages": [
+        {
+            "name": "donquixote/hasty-php-ast",
+            "version": "v0.0.0-alpha.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/donquixote/hasty-php-ast.git",
+                "reference": "dc070472a6e20783b20b8281379b43b24eb2573e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/donquixote/hasty-php-ast/zipball/dc070472a6e20783b20b8281379b43b24eb2573e",
+                "reference": "dc070472a6e20783b20b8281379b43b24eb2573e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Donquixote\\HastyPhpAst\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Donquixote\\HastyPhpAst\\Tests\\": "tests/src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Hennings",
+                    "email": "andreas@dqxtech.net"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/donquixote/hasty-php-ast/tree/v0.0.0-alpha.1",
+                "issues": "https://github.com/donquixote/hasty-php-ast/issues"
+            },
+            "time": "2016-01-03 06:17:52"
+        },
+        {
+            "name": "donquixote/hasty-php-parser",
+            "version": "v0.0.0-alpha",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/donquixote/hasty-php-parser.git",
+                "reference": "3554b36fc7e91d99099ed4202816f7258aea2521"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/donquixote/hasty-php-parser/zipball/3554b36fc7e91d99099ed4202816f7258aea2521",
+                "reference": "3554b36fc7e91d99099ed4202816f7258aea2521",
+                "shasum": ""
+            },
+            "require": {
+                "donquixote/hasty-php-ast": "~0.0",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Donquixote\\HastyPhpParser\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Donquixote\\HastyPhpParser\\Tests\\": "tests/src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Hennings",
+                    "email": "andreas@dqxtech.net"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/donquixote/hasty-php-parser/tree/v0.0.0-alpha",
+                "issues": "https://github.com/donquixote/hasty-php-parser/issues"
+            },
+            "time": "2016-01-03 06:19:40"
+        },
+        {
+            "name": "donquixote/hasty-reflection-common",
+            "version": "v0.0.0-alpha.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/donquixote/hasty-reflection-common.git",
+                "reference": "f69f84fb6ee574b0102887c009b2c8abc8f34478"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/donquixote/hasty-reflection-common/zipball/f69f84fb6ee574b0102887c009b2c8abc8f34478",
+                "reference": "f69f84fb6ee574b0102887c009b2c8abc8f34478",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Donquixote\\HastyReflectionCommon\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Donquixote\\HastyReflectionCommon\\Tests\\": "tests/src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Hennings",
+                    "email": "andreas@dqxtech.net"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/donquixote/hasty-reflection-common/tree/v0.0.0-alpha.1",
+                "issues": "https://github.com/donquixote/hasty-reflection-common/issues"
+            },
+            "time": "2016-01-03 06:38:20"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.5.0"
+    },
+    "platform-dev": []
+}

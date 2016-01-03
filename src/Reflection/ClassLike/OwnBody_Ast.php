@@ -44,7 +44,7 @@ class OwnBody_Ast extends OwnBodyBase {
   protected function findOwnMethod($name) {
     foreach ($this->astBody->getMemberNodes() as $memberNode) {
       if ($memberNode instanceof AstFunctionLikeInterface) {
-        if ($name === $memberNode->getName()) {
+        if ($name === $memberNode->getShortName()) {
           return $this->methodNodeBuildMethod($memberNode);
         }
       }
@@ -59,7 +59,7 @@ class OwnBody_Ast extends OwnBodyBase {
     $methods = array();
     foreach ($this->astBody->getMemberNodes() as $memberNode) {
       if ($memberNode instanceof AstFunctionLikeInterface) {
-        $methods[$memberNode->getName()] = $this->methodNodeBuildMethod($memberNode);
+        $methods[$memberNode->getShortName()] = $this->methodNodeBuildMethod($memberNode);
       }
     }
     return $methods;

@@ -14,11 +14,17 @@ class MethodReflection_Ast extends MethodReflectionBase {
   private $astNode;
 
   /**
+   * @var bool
+   */
+  private $isInterface;
+
+  /**
    * @param \Donquixote\HastyReflectionCommon\Reflection\ClassLike\ClassLikeReflectionInterface $declaringClass
    * @param \Donquixote\HastyPhpAst\Ast\FunctionLike\AstFunctionLikeInterface $astNode
    */
   function __construct(ClassLikeReflectionInterface $declaringClass, AstFunctionLikeInterface $astNode) {
     parent::__construct($declaringClass);
+    $this->isInterface = $declaringClass->isInterface();
     $this->astNode = $astNode;
   }
 
@@ -27,7 +33,7 @@ class MethodReflection_Ast extends MethodReflectionBase {
    * @return string
    */
   function getName() {
-    return $this->astNode->getName();
+    return $this->astNode->getShortName();
   }
 
   /**
@@ -55,7 +61,7 @@ class MethodReflection_Ast extends MethodReflectionBase {
    * @return bool
    */
   function isAbstract() {
-    return $this->astNode->hasModifier(T_ABSTRACT);
+    return $this->isInterface || $this->astNode->hasModifier(T_ABSTRACT);
   }
 
   /**
@@ -69,7 +75,8 @@ class MethodReflection_Ast extends MethodReflectionBase {
    * @return bool
    */
   function isPublic() {
-    return $this->astNode->hasModifier(T_PUBLIC);
+    return $this->astNode->hasModifier(T_PUBLIC)
+      || (!$this->astNode->hasModifier(T_PRIVATE) && !$this->astNode->hasModifier(T_PROTECTED));
   }
 
   /**

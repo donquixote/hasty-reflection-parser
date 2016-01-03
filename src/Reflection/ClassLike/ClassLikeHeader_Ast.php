@@ -25,7 +25,7 @@ class ClassLikeHeader_Ast implements ClassLikeHeaderInterface {
    * @return \Donquixote\HastyReflectionParser\Reflection\ClassLike\ClassLikeHeader_Ast
    */
   static function create(NamespaceUseContextInterface $namespaceUseContext, AstClassLikeInterface $astNode) {
-    $qcn = $astNode->getName();
+    $qcn = $astNode->getShortName();
     if (NULL !== $namespaceQcn = $namespaceUseContext->getNamespaceName()) {
       $qcn = $namespaceQcn . '\\' . $qcn;
     }

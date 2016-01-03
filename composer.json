@@ -12,11 +12,11 @@
     {
       "type": "vcs",
       "url": "https://github.com/donquixote/hasty-reflection-common"
-    }
+    },
     {
       "type": "vcs",
       "url": "https://github.com/donquixote/hasty-php-ast"
-    }
+    },
     {
       "type": "vcs",
       "url": "https://github.com/donquixote/hasty-php-parser"
