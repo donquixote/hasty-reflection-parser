@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/donquixote/hasty-reflection-parser.png)](https://travis-ci.org/donquixote/hasty-reflection-parser)
+
 # hasty-reflection-parser
 
 A library that parses PHP code to generate reflection objects.
