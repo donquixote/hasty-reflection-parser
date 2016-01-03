@@ -1,0 +1,41 @@
+{
+  "name": "donquixote/hasty-reflection-parser",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andreas Hennings",
+      "email": "andreas@dqxtech.net"
+    }
+  ],
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/donquixote/hasty-reflection-common"
+    }
+    {
+      "type": "vcs",
+      "url": "https://github.com/donquixote/hasty-php-ast"
+    }
+    {
+      "type": "vcs",
+      "url": "https://github.com/donquixote/hasty-php-parser"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "donquixote/hasty-reflection-common": "~0.0",
+    "donquixote/hasty-php-ast": "~0.0",
+    "donquixote/hasty-php-parser": "~0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Donquixote\\HastyReflectionParser\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Donquixote\\HastyReflectionParser\\Tests\\": "tests/src"
+    }
+  }
+}
