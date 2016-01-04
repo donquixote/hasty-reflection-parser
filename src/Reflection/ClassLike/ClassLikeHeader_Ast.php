@@ -49,6 +49,13 @@ class ClassLikeHeader_Ast implements ClassLikeHeaderInterface {
   }
 
   /**
+   * @return string
+   */
+  function getShortName() {
+    return $this->astNode->getShortName();
+  }
+
+  /**
    * @return bool
    */
   function isInterface() {
