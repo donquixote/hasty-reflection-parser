@@ -42,13 +42,6 @@ class ClassLikeHeader_Ast implements ClassLikeHeaderInterface {
   }
 
   /**
-   * @return string|null
-   */
-  function getDocComment() {
-    return $this->astNode->getDocComment();
-  }
-
-  /**
    * @return string
    */
   function getName() {
@@ -79,7 +72,7 @@ class ClassLikeHeader_Ast implements ClassLikeHeaderInterface {
   /**
    * @return bool
    */
-  function isAbstract() {
+  function isAbstractClass() {
     return $this->astNode->hasModifier(T_ABSTRACT);
   }
 

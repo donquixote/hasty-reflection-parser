@@ -16,11 +16,26 @@ use Donquixote\HastyReflectionParser\ClassIndex\ClassIndex_Ast;
 use Donquixote\HastyReflectionParser\Tests\Fixture\B;
 use Donquixote\HastyReflectionParser\Tests\Fixture\C;
 use Donquixote\HastyReflectionParser\Tests\Fixture\D;
+use Donquixote\HastyReflectionParser\Tests\Fixture\IEmpty;
+use Donquixote\HastyReflectionParser\Tests\Fixture\IOneMethod;
+use Donquixote\HastyReflectionParser\Tests\Fixture\TEmpty;
+use Donquixote\HastyReflectionParser\Tests\Fixture\TOneMethod;
 
 /**
  * @see \Donquixote\HastyReflectionCommon\Tests\ClassIndexTest
  */
 class ClassIndexTest extends \PHPUnit_Framework_TestCase {
+
+  function testInterfaceIsAbstract() {
+    $this->assertFalse((new \ReflectionClass(IEmpty::class))->IsAbstract());
+    $this->assertTrue((new \ReflectionClass(IOneMethod::class))->IsAbstract());
+    $this->assertTrue((new \ReflectionClass(TEmpty::class))->IsAbstract());
+    $this->assertTrue((new \ReflectionClass(TOneMethod::class))->IsAbstract());
+  }
+
+  function testInterfaces() {
+    $this->assertEquals(array(), (new \ReflectionClass(IEmpty::class))->getInterfaceNames());
+  }
 
   /**
    * @param \Donquixote\HastyReflectionCommon\Canvas\ClassIndex\ClassIndexInterface $classIndex
@@ -35,8 +50,14 @@ class ClassIndexTest extends \PHPUnit_Framework_TestCase {
     // Test identity.
     $this->assertTrue($classReflection === $classIndex->classGetReflection($class));
 
-    // Test name.
+    // Test class type/info.
+    $expectedIsClass = !$reflectionClass->isInterface() && !$reflectionClass->isTrait();
     $this->assertEquals($reflectionClass->getName(), $classReflection->getName());
+    $this->assertEquals($reflectionClass->getDocComment(), $classReflection->getDocComment());
+    $this->assertEquals($reflectionClass->isInterface(), $classReflection->isInterface());
+    $this->assertEquals($reflectionClass->isTrait(), $classReflection->isTrait());
+    $this->assertEquals($expectedIsClass, $classReflection->isClass());
+    $this->assertEquals($reflectionClass->isAbstract() && $expectedIsClass, $classReflection->isAbstractClass());
 
     // Test context.
     $this->assertEquals($reflectionClass->getNamespaceName(), $classReflection->getNamespaceUseContext()->getNamespaceName());
@@ -50,11 +71,12 @@ class ClassIndexTest extends \PHPUnit_Framework_TestCase {
       $this->assertTrue($classReflection->extendsOrImplementsInterface($interfaceName, FALSE));
     }
 
-    $expectedInterfaceNames = $reflectionClass->getInterfaceNames();
+    $expectedAllInterfaceNames = $expectedAllAndSelfInterfaceNames = $reflectionClass->getInterfaceNames();
     if ($reflectionClass->isInterface()) {
-      array_unshift($expectedInterfaceNames, $class);
+      array_unshift($expectedAllAndSelfInterfaceNames, $class);
     }
-    $this->assertEqualSorted($expectedInterfaceNames, array_keys($classReflection->getAllInterfaces(FALSE)));
+    $this->assertEqualSorted($expectedAllAndSelfInterfaceNames, array_keys($classReflection->getAllInterfaces(TRUE)));
+    $this->assertEqualSorted($expectedAllInterfaceNames, array_keys($classReflection->getAllInterfaces(FALSE)));
 
     $expectedMethodNames = array();
     $expectedOwnMethodNames = array();
@@ -73,6 +95,9 @@ class ClassIndexTest extends \PHPUnit_Framework_TestCase {
       $methodReflection = $methodReflections[$reflectionMethod->getShortName()];
       $this->assertEqualMethods($reflectionMethod, $methodReflection);
     }
+
+    // isAbstract() is a beast, so we test it least.
+    $this->assertEquals($reflectionClass->isAbstract(), $classReflection->isAbstract());
   }
 
   /**
@@ -100,7 +125,20 @@ class ClassIndexTest extends \PHPUnit_Framework_TestCase {
   private function assertEqualSorted(array $expected, array $actual) {
     sort($expected);
     sort($actual);
-    $this->assertEquals($expected, $actual);
+    $this->assertEquals($this->formatArray($expected), $this->formatArray($actual));
+  }
+
+  /**
+   * @param array $array
+   *
+   * @return string
+   */
+  private function formatArray(array $array) {
+    $result = array();
+    foreach ($array as $value) {
+      $result[] = var_export($value, TRUE);
+    }
+    return "[\n  " . implode(",\n  ", $result) . "\n]";
   }
 
   /**
@@ -108,6 +146,7 @@ class ClassIndexTest extends \PHPUnit_Framework_TestCase {
    */
   function provideClassIndexArgs() {
     $classes = array(
+      IEmpty::class,
       D::class,
       C::class,
       B::class,

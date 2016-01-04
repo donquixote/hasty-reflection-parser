@@ -74,4 +74,16 @@ class OwnBody_Ast extends OwnBodyBase {
     $declaringClass = $this->autoloadSource->classGetReflection($this->name);
     return new MethodReflection_Ast($declaringClass, $methodNode);
   }
+
+  /**
+   * @return bool
+   */
+  protected function calcHasOwnMethods() {
+    foreach ($this->astBody->getMemberNodes() as $memberNode) {
+      if ($memberNode instanceof AstFunctionLikeInterface) {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
 }

@@ -36,11 +36,10 @@ final class ClassLikeReflection_Ast extends UtilBase {
 
     $ownInterfaces = OwnInterfaces_Ast::createFromAst($astNode, $classIndex, $namespaceUseContext);
 
-    $selfInterfaceName = ($header->isInterface())
-      ? $name
-      : NULL;
-
-    $interfacesAll = new AllInterfaces_FromOwn($extends, $ownInterfaces, $selfInterfaceName, $classIndex);
+    $interfacesAll = new AllInterfaces_FromOwn($extends, $ownInterfaces);
+    if ($header->isInterface()) {
+      $interfacesAll = $interfacesAll->withSelfInterfaceName($name, $classIndex);
+    }
 
     $ownBody = new OwnBody_Ast($astNode->getBody(), $classIndex, $name);
 
